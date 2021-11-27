@@ -10,7 +10,7 @@
 <body>
 <canvas id='canvas1'></canvas>
 
-<footer>Created by <a href="https://fb.com/quangbaond" target='blank'>Quang Bao RP</a> @2020.
+<footer>Created by <a href="https://fb.com/quangbaorp" target='blank'>Quang Bao RP</a> @2021.
 </footer>
 <script type="text/javascript" src="{{ asset('assets/js/index.js')}}"></script>
 </body>
