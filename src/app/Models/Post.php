@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Models\Category;
-use App\Models\Postcategory;
-use App\Models\Posttag;
+use App\Models\PostCategory;
+use App\Models\PostTag;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -46,12 +46,12 @@ class Post extends Model
      */
     public function tag() 
     {
-        return $this->belongsToMany(Tag::class,Posttag::class);
+        return $this->belongsToMany(Tag::class,PostTag::class);
     }
 
     public function cat() 
     {
-        return $this->belongsToMany(Category::class,Postcategory::class);
+        return $this->belongsToMany(Category::class,PostCategory::class);
     }
 
 
