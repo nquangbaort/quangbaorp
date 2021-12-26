@@ -2,7 +2,7 @@
     <header class="w-full container mx-auto">
         <div class="flex flex-col items-center">
             <span class="font-bold text-gray-700 text-2xl sm:text-5xl">
-                {{$props.title ? $props.title : '&lt;&nbsp;BoolBlog&nbsp;&gt;'}}
+                {{$props.title ? $props.title : '&lt;&nbsp;VAIXBLOG&nbsp;&gt;'}}
             </span>
             <p class="text-lg text-gray-600">
                 {{$props.subtitle ? $props.subtitle : ''}}

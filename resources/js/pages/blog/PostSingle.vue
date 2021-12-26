@@ -18,7 +18,7 @@
                 <!-- Article Image -->
                 <span>
                     <img v-if="post.featuredImage" :src="post.featuredImage" class="object-cover h-56 w-full" >
-                    <div v-else class="w-full h-56 bg-blue-700 flex"><span class="font-semibold text-xl text-white m-auto">&lt;&nbsp;BoolBlog&nbsp;&gt;</span></div>
+                    <div v-else class="w-full h-56 bg-blue-700 flex"><span class="font-semibold text-xl text-white m-auto">&lt;&nbsp;VAIXBLOG&nbsp;&gt;</span></div>
                 </span>
                 <div class="bg-white flex flex-col justify-start p-6">
                     <span>

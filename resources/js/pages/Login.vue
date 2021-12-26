@@ -6,7 +6,7 @@
     <div class="w-full max-w-lg">
       <div class="leading-loose">
         <form class="max-w-xl m-4 p-10 bg-white rounded shadow-xl">
-          <p class="font-semibold text-2xl text-blue-400 text-center pb-4">&lt;&nbsp;BoolBlog&nbsp;&gt;</p>
+          <p class="font-semibold text-2xl text-blue-400 text-center pb-4">&lt;&nbsp;VAIXBLOG&nbsp;&gt;</p>
           <p class="text-gray-800 font-medium text-center text-lg font-bold">Login</p>
           <div class="mt-4">
             <Input type="email" v-model="data.email"  placeholder="Email"  />

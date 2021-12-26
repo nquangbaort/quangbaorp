@@ -14,7 +14,7 @@
         @else
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         @endif
-        <title>BoolBlog</title>
+        <title>VAIXBLOG</title>
         <script>
            (function () {
                window.Bool = {

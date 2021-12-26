@@ -6,7 +6,7 @@
     >
         <div class="w-full h-20 border-b flex px-4 items-center mb-8">
             <router-link to='/'>
-                <p class="font-semibold text-lg sm:text-2xl text-blue-500 pl-4">&lt;&nbsp;BoolBlog&nbsp;&gt;</p>
+                <p class="font-semibold text-lg sm:text-2xl text-blue-500 pl-4">&lt;&nbsp;VAIXBLOG&nbsp;&gt;</p>
             </router-link>
         </div>
 

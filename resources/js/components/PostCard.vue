@@ -4,7 +4,7 @@
         <router-link :to="`/post/${post.slug}`">
             <img v-if="post.featuredImage" :src="post.featuredImage" class="h-48 w-full object-cover object-center cursor-pointer" >
             <div v-else class="w-full h-48 bg-blue-700 flex">
-                <span class="font-semibold text-lg text-white m-auto cursor-pointer">&lt;&nbsp;BoolBlog&nbsp;&gt;</span>
+                <span class="font-semibold text-lg text-white m-auto cursor-pointer">&lt;&nbsp;VAIXBLOG&nbsp;&gt;</span>
             </div>
         </router-link>
         <div class="p-4 mt-2">
