@@ -106,7 +106,7 @@ export default {
 		},
 		// PAGINATION
 		async getPostData(page=1) {
-			const res = await this.callApi('get', `/app/get_posts?page=${page}&total=${this.total}`);
+			const res = await this.callApi('get', `/getPosts?page=${page}&total=${this.total}`);
 			if(res.status==200){
 				this.$store.commit('setPosts', res.data.data); // get paginated data
 				this.pageInfo = res.data; // get page num /links to prev/next
