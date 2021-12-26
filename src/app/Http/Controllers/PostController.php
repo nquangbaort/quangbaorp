@@ -11,14 +11,14 @@ use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
-  
+
     public function index(Request $request)
-    {   
+    {
         if ($request->total){
             return response()->json(Post::with(['tag', 'cat','user'])->orderBy('id', 'desc')->paginate($request->total));
         } else {
             return response()->json(Post::with(['tag', 'cat','user'])->orderBy('id', 'desc')->get());
-        }   
+        }
     }
 
     public function store(Request $request)
@@ -38,17 +38,17 @@ class PostController extends Controller
 
         $postCategories = [];
         $postTags = [];
-        /* You may use the transaction method on the DB facade to run a set of operations 
+        /* You may use the transaction method on the DB facade to run a set of operations
             within a database. If an exception is thrown within the transaction Closure,
             the transaction will automatically be rolled back (no data gets inserted)
-            If you would like to begin a transaction manually and have complete control 
+            If you would like to begin a transaction manually and have complete control
             over rollbacks and commits, you may use the beginTransaction */
         DB::beginTransaction();
         try {
             $post = Post::create([
                 'title' => $request->title,
                 'slug' => $request->title,
-                'post' => $request->post, 
+                'post' => $request->post,
                 'postExcerpt' => $request->postExcerpt,
                 'user_id' => Auth::user()->id,
                 'metaDescription' => $request->metaDescription,
@@ -56,11 +56,11 @@ class PostController extends Controller
                 'featuredImage' => $request->featuredImage ?? null
             ]);
 
-            // insert post tags 
+            // insert post tags
             foreach($tags as $t){
                 array_push($postTags, ['tag_id' => $t, 'post_id' => $post->id]);
             }
-            PostTag::insert($postTags);    
+            PostTag::insert($postTags);
 
             // insert categories (must add created/updated_at manually)
             foreach($categories as $c){
@@ -68,9 +68,9 @@ class PostController extends Controller
             }
 
             // Use insert insted of create when using transaction
-            PostCategory::insert($postCategories); 
-            
- 
+            PostCategory::insert($postCategories);
+
+
             DB::commit(); // Commit transaction
             return 'Post Created';
         } catch (\Throwable $th) {
@@ -100,7 +100,7 @@ class PostController extends Controller
         $tags = $request->tag_id;
         $postCategories = [];
         $postTags = [];
-        
+
         $post = Post::where('id', $id)->first();
         if($post->featuredImage && $post->featuredImage != $request->featuredImage){
             $this->deleteFileFromServer($post->featuredImage); // delete old imagefile from the server
@@ -126,12 +126,12 @@ class PostController extends Controller
             // delete all previous categories
             PostCategory::where('post_id', $id)->delete();
             PostCategory::insert($postCategories);
-            
+
             foreach ($tags as $t) {
                 array_push($postTags, ['tag_id' => $t, 'post_id' => $id]);
             }
-            Posttag::where('post_id', $id)->delete();
-            Posttag::insert($postTags);
+            PostTag::where('post_id', $id)->delete();
+            PostTag::insert($postTags);
 
             DB::commit();
             return 'Post Updated';
@@ -143,19 +143,19 @@ class PostController extends Controller
 
 
     public function destroy(Request $request)
-    {   
+    {
         $post = Post::where('id', $request->id)->first();
         if($post->featuredImage){
-            $this->deleteFileFromServer($post->featuredImage); 
+            $this->deleteFileFromServer($post->featuredImage);
         }
         return $post->delete();
     }
 
 
-        
+
     // Editor.js image upload
     public function uploadEditorImage(Request $request){
-        
+
         $this->validate($request, [
             'image' => 'required|mimes:jpeg,jpg,png'
         ]);
@@ -164,19 +164,19 @@ class PostController extends Controller
 
         // Editor js (Vue wrapper) json object ( allows to display image back in the Vue component)
         return response()->json([
-            'success' => 1, 
+            'success' => 1,
             'file' => [
                 'url' => env('APP_URL')."uploads/$picName"
             ]
         ]);
-        
+
 
         /* TO DO - REMOVE UNUSED IMAGES
         remove unused images that arent saved in the post :
         1 make temp_image_table
         2 whenever an image is uploaded add to temp_image_table id : 1, img: 34322.png
         3 before creating resource check if you have any image for that resource in temp_image_table,
-        you can get this images and delete at the end 
+        you can get this images and delete at the end
         4 upload image
         */
     }

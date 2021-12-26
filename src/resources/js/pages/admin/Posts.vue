@@ -1,11 +1,11 @@
 <template>
     <div>
 		<!-- breadcrumb -->
-		<route-breadcrumb></route-breadcrumb>	
-		
+		<route-breadcrumb></route-breadcrumb>
+
 		<div class="lg:flex justify-between items-center mb-6">
             <p class="text-2xl font-semibold mb-2 lg:mb-0">Posts</p>
-            
+
 			<Button size="large" @click="$router.push('/app/createpost')" v-if="isWritePermitted"><Icon type="md-add" /> Add Post</Button>
         </div>
 
@@ -19,7 +19,7 @@
 						<th class="px-3 py-2"><span class="text-gray-300">Categories</span></th>
 						<th class="px-3 py-2 hidden md:table-cell"><span class="text-gray-300">Tags</span></th>
 						<th class="px-3 py-2 hidden lg:table-cell"><span class="text-gray-300">Views</span></th>
-						<th class="px-3 py-2 hidden lg:table-cell"><span class="text-gray-300">Created at</span></th>					
+						<th class="px-3 py-2 hidden lg:table-cell"><span class="text-gray-300">Created at</span></th>
 						<th class="px-2 py-2 w-5"><span class="text-gray-300">Actions</span></th>
 					</tr>
 				</thead>
@@ -47,7 +47,7 @@
 							<Button class="w-full" size="small" @click="$router.push(`/post/${post.slug}`)" ><Icon type="md-eye" /> &nbsp; View &nbsp;</Button>
 							<Button class="w-full" size="small" @click="$router.push(`/app/editpost/${post.id}`)" v-if="isUpdatePermitted">
 								<Icon type="md-create" />&nbsp;&nbsp;Edit&nbsp;&nbsp;
-							</Button>					
+							</Button>
 							<Button class="w-full" size="small" @click="showDeletingModal(post, i)" :loading="post.isDeleting" v-if="isDeletePermitted">
 								<Icon type="md-trash" /> Delete
 							</Button>
@@ -59,13 +59,13 @@
 		<br><br>
 		<!-- PAGINATION  -->
 		<!-- @on-change - ViewUi syntax -->
-		<Page 
-		:total="pageInfo.total"  
-		:current="pageInfo.current_page" 
-		:page-size="parseInt(pageInfo.per_page)" 
-		@on-change="getPostData" 
-		v-if="pageInfo" />		
-		
+		<Page
+		:total="pageInfo.total"
+		:current="pageInfo.current_page"
+		:page-size="parseInt(pageInfo.per_page)"
+		@on-change="getPostData"
+		v-if="pageInfo" />
+
 		<delete-modal></delete-modal>
     </div>
 </template>
@@ -108,7 +108,7 @@ export default {
 		async getPostData(page=1) {
 			const res = await this.callApi('get', `/app/get_posts?page=${page}&total=${this.total}`);
 			if(res.status==200){
-				this.$store.commit('setPosts',res.data.data); // get paginated data
+				this.$store.commit('setPosts', res.data.data); // get paginated data
 				this.pageInfo = res.data; // get page num /links to prev/next
 			}else{
 				if(res.status==403){
