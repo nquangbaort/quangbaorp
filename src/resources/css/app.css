@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet');
 
 @tailwind base;
 @tailwind components;
@@ -14,7 +14,7 @@ body::-webkit-scrollbar {
 
 /* Sidebar */
 .overlay {
-    position: relative; 
+    position: relative;
 }
 
 /* 1024 -1 so it doesnt show when it hits 1024px */
@@ -34,7 +34,7 @@ body::-webkit-scrollbar {
 }
 
 /* Admin Panel - Create/Edit post forms */
-.post-editor {	
+.post-editor {
     padding: 4px 7px;
     font-size: 14px;
     border: 1px solid #e2e8f0;
